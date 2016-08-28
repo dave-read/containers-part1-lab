@@ -1,0 +1,25 @@
+version: '2'
+
+services:
+  api:
+    image: api
+#    ports:
+#      - 5000:5000
+    networks:
+      - lab
+  web:
+    image: web
+    ports:
+      - 3000:3000
+    networks:
+      - lab
+    environment:
+      - HTTPPORT=3000
+      - APIPORT=5000
+      - APIURL=api
+    depends_on:
+      - api
+
+networks:
+  lab:
+    driver: bridge

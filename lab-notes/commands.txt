@@ -53,3 +53,19 @@ docker network connect lab api
 docker run -d --name web --network=lab -e "APIURL=api" -p 3000:3000 web
 docker logs web
 docker network inspect lab
+
+# use docker-compose to simplify launching containers
+docker rm -f web api
+create/copy docker-compose.yml anywhere - it uses images do doesn't need access to project arftifacts
+docker-compose up [-f docker-compose.yml]
+
+note that you can't get directly to the api service from the host
+
+add the ports element to the api service
+    ports:
+      - 5000:5000
+
+#remove/stop the services 
+docker-compose down
+# start with new config
+docker-compose up
