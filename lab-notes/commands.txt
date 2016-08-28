@@ -1,0 +1,32 @@
+
+run components locally
+api-dotnet
+run.[cmd|sh]
+
+web-node
+run.[cmd|sh]
+
+build images
+============
+
+api-dotnet
+publish.cmd
+docker build -t api .\bin\Debug\netcoreapp1.0\publish\
+
+web-node
+docker build -t web .
+
+run api - will bind to port 5000/5000
+docker run --name api -p 5000:5000 api
+
+
+docker run --name web -e "APIURL=192.168.0.106" -p 3000:3000 web
+docker rm -f web
+
+docker run --name web --link=api:api -e "APIURL=api" -p 3000:3000 web
+docker rm -f web
+
+docker network create lab
+docker network connect lab api
+docker run --name web --network=lab -e "APIURL=api" -p 3000:3000 web
+docker network inspect lab
