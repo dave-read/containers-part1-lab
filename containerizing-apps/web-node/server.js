@@ -35,5 +35,5 @@ app.get('/api', function (req, res) {
 // default to the local 3000 port
 var port = process.env.HTTPPORT || 3000;
 app.listen(port, function () {
-    console.log("Listening on port " + port);
+    console.log("Listening on port " + port + " requestApi:"+requestApi);
 });
