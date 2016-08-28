@@ -6,15 +6,18 @@ use -d for all unless reason to do otherwise
 
 
 # Run components locally
-api-dotnet
+# api-dotnet
 run.[cmd|sh]
 
-web-node
+# web-node
 run.[cmd|sh]
 
+donetcore endpoint: localhost:5000/api/hello
+nodejs endpoint: localhost:3000
+
+# Containerizing ... 
 build images
 ============
-
 api-dotnet
 publish.cmd
 docker build -t api .\bin\Debug\netcoreapp1.0\publish\
