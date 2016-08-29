@@ -13,8 +13,6 @@ services:
     networks:
       - lab
     environment:
-      - HTTPPORT=3000
-      - APIPORT=5000
       - APIURL=api
     depends_on:
       - api
