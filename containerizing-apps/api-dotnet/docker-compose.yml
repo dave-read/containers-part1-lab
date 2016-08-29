@@ -1,0 +1,10 @@
+version: '2'
+
+services:
+  api_dotnet:
+    image: username/api_dotnet
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
