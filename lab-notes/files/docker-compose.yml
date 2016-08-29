@@ -1,10 +1,9 @@
 version: '2'
-
 services:
   api:
     image: api
-#    ports:
-#      - 5000:5000
+    ports:
+      - 5000:5000
     networks:
       - lab
   web:
@@ -19,7 +18,6 @@ services:
       - APIURL=api
     depends_on:
       - api
-
 networks:
   lab:
     driver: bridge
