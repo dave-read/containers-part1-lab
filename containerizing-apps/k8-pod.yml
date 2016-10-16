@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: container-lab
+  labels:
+    app: web
+spec:
+  containers:
+    - name: web
+      image: container-lab-web
+      env:
+        - APIURL=api
+      ports:
+        - containerPort: 3000
+    - name: api
+      image: container-lab-api
+      ports:
+        - containerPort: 8000
