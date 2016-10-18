@@ -1,0 +1,73 @@
+{
+    "id": "/containers",
+    "groups": [
+        {
+            "id": "lab",
+            "apps": [
+                {
+                    "id": "web",
+                    "dependencies":["api"],
+                    "container": {
+                        "type": "DOCKER",
+                        "docker": {
+                            "image": "daveread/container-lab-web",
+                            "privileged": false,
+                            "network": "BRIDGE",
+                            "portMappings": [
+                                {
+                                    "containerPort": 3000,
+                                    "hostPort": 0,
+                                    "servicePort": 10000
+                                }
+                            ]
+                        }
+                    },
+                    "env": {
+                        "APIURL" : "api.lab.containers.marathon.mesos",
+                        "APIPORT": "5000"
+                    },
+                    "instances": 1,
+                    "cpus": 0.1,
+                    "mem": 128,
+                    "constraints": [
+                        [
+                            "hostname",
+                            "UNIQUE"
+                        ]
+                    ],
+                    "labels":{
+                      "HAPROXY_GROUP":"external",
+                      "HAPROXY_0_VHOST":"drdcosagents.westus.cloudapp.azure.com",
+                      "HAPROXY_0_MODE":"http"
+                    }
+                },
+                {
+                    "id": "api",
+                    "container": {
+                        "type": "DOCKER",
+                        "docker": {
+                            "image": "daveread/container-lab-api",
+                            "privileged": false,
+                            "network": "BRIDGE",
+                            "portMappings": [
+                                {
+                                    "containerPort": 5000,
+                                    "hostPort": 5000
+                                }
+                            ]
+                        }
+                    },
+                    "instances": 1,
+                    "cpus": 0.1,
+                    "mem": 128,
+                    "constraints": [
+                        [
+                            "hostname",
+                            "UNIQUE"
+                        ]
+                    ]
+                }
+            ]
+        }
+    ]
+}
