@@ -12,13 +12,17 @@ services:
 
     image: "${REPO}container-lab-web"
     ports:
-      - 8888:3000
+      - 80:3000
     networks:
       - lab
     environment:
       - APIURL=api
     depends_on:
       - api
+# Labels used to configure Docker Data Center load Balancers
+    labels:
+      - "interlock.context_root=/container-lab-web"
+      - "interlock.context_root_rewrite=true"
+# Driver default will be based on engine
 networks:
   lab:
-    driver: bridge
