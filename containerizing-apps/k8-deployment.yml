@@ -1,0 +1,24 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: container-lab-web
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: container-lab-web
+    spec:
+      containers:
+        - name: web
+          image: daveread/container-lab-web
+          env:
+            - 
+              name: APIURL
+              value: localhost
+          ports:
+            - containerPort: 3000
+        - name: api
+          image: daveread/container-lab-api
+          ports:
+            - containerPort: 5000

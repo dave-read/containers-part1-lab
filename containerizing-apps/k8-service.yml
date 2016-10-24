@@ -11,4 +11,4 @@ spec:
       targetPort: 3000
       protocol: TCP
   selector:
-    name: container-lab-web
+    app: container-lab-web
