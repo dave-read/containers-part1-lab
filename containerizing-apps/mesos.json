@@ -1,5 +1,5 @@
 {
-    "id": "/containers",
+    "id": "/containers2",
     "groups": [
         {
             "id": "lab",
@@ -23,18 +23,13 @@
                         }
                     },
                     "env": {
-                        "APIURL" : "api.lab.containers.marathon.mesos",
+                        "APIURL" : "api.lab.containers2.marathon.mesos",
                         "APIPORT": "5000"
                     },
                     "instances": 1,
                     "cpus": 0.1,
                     "mem": 128,
-                    "constraints": [
-                        [
-                            "hostname",
-                            "UNIQUE"
-                        ]
-                    ],
+                    "constraints": [["hostname","GROUP_BY"],["AzureFD","GROUP_BY","5"]],
                     "labels":{
                       "HAPROXY_GROUP":"external",
                       "HAPROXY_0_VHOST":"drdcosagents.westus.cloudapp.azure.com",
@@ -60,12 +55,7 @@
                     "instances": 1,
                     "cpus": 0.1,
                     "mem": 128,
-                    "constraints": [
-                        [
-                            "hostname",
-                            "UNIQUE"
-                        ]
-                    ]
+                    "constraints": [["hostname","GROUP_BY"],["AzureFD","GROUP_BY","5"]]
                 }
             ]
         }
