@@ -12,3 +12,5 @@ With minikube you can get the url for the service via the --url command
 minikube service container-lab-web --url
 
 to scale the deployment: kubectl scale --replicas=3 deployment/container-lab-web
+
+for dashboard: minikube dashboard --url
